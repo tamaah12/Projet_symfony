@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une Dette{% endblock %}
+
+{% block main %}
+    <h1 class="text-2xl font-bold mb-4">Ajouter une Dette</h1>
+
+    {# Affiche les erreurs de formulaire #}
+    {% if form.vars.errors|length > 0 %}
+        <div class="alert alert-danger bg-red-500 text-white p-2 rounded-md mb-4">
+            <ul>
+                {% for error in form.vars.errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {# Affichage du formulaire #}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Ajouter</button>
+    {{ form_end(form) }}
+{% endblock %}

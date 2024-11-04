@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<div class="container mx-auto mb-5">
+    <div class="bg-white shadow-md rounded-lg mt-5">
+        <div class="bg-gray-200 font-semibold text-lg p-4 rounded-t-lg">Formulaire client</div>
+        <div class="p-4">
+            {{ form(formClient) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
