@@ -8,7 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\DateType; // Importez DateType
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -27,8 +27,8 @@ class DetteType extends AbstractType
             ->add('dateAt', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'Date',
-                'html5' => true, // Activez HTML5 pour le champ de date
-                'input' => 'datetime_immutable', // Spécifiez que l'input doit être de type DateTimeImmutable
+                'html5' => true,
+                'input' => 'datetime_immutable',
             ])
             ->add('client', EntityType::class, [
                 'class' => Client::class,

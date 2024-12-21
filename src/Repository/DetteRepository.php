@@ -6,14 +6,7 @@ use App\Entity\Dette;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<Dette>
- *
- * @method Dette|null find($id, $lockMode = null, $lockVersion = null)
- * @method Dette|null findOneBy(array $criteria, array $orderBy = null)
- * @method Dette[]    findAll()
- * @method Dette[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
+
 class DetteRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -39,12 +32,7 @@ class DetteRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * Finds debts based on filters such as client, date, and status.
-     * 
-     * @param array $filters An associative array containing the filters.
-     * @return Dette[] Returns an array of Dette objects.
-     */
+    
     public function findByFilters(array $filters): array
     {
         $qb = $this->createQueryBuilder('d')
@@ -57,15 +45,15 @@ class DetteRepository extends ServiceEntityRepository
         }
 
         if (!empty($filters['date'])) {
-            $qb->andWhere('d.DateAt = :date') // Utiliser '=' pour une date précise
+            $qb->andWhere('d.DateAt = :date')
                ->setParameter('date', $filters['date']);
         }
 
         if (isset($filters['statut'])) {
             if ($filters['statut'] === 'soldé') {
-                $qb->andWhere('d.montantVerse = d.montant'); // Tous les montants versés
+                $qb->andWhere('d.montantVerse = d.montant');
             } elseif ($filters['statut'] === 'non soldé') {
-                $qb->andWhere('d.montantVerse < d.montant'); // Montants non versés
+                $qb->andWhere('d.montantVerse < d.montant');
             }
         }
 

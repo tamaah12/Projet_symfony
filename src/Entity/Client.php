@@ -115,7 +115,7 @@ class Client
     public function removeDette(Dette $dette): self
     {
         if ($this->dettes->removeElement($dette)) {
-            // set the owning side to null (unless already changed)
+
             if ($dette->getClient() === $this) {
                 $dette->setClient(null);
             }

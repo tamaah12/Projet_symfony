@@ -35,7 +35,7 @@ class DetteController extends AbstractController
         ]);
     }
 
-    #[Route('/dette/create', name: 'create.dette')]
+    #[Route('/dette/create', name: 'dette.create')]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $dette = new Dette();

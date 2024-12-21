@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ClientType;
-use App\Form\ClientFilterType; // Ajout du formulaire de filtre
+use App\Form\ClientFilterType;
 use App\Entity\Client;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,13 +20,13 @@ class ClientController extends AbstractController
         $form = $this->createForm(ClientFilterType::class);
         $form->handleRequest($request);
 
-        // Récupérer les données du formulaire
+
         $filters = $form->isSubmitted() && $form->isValid() ? $form->getData() : [];
 
-        // Vérifier que les filtres ne sont pas null
+
         $filters = array_filter($filters, fn($value) => !is_null($value) && $value !== '');
 
-        // Appeler la méthode findByFilters
+
         $clients = $clientRepository->findByFilters($filters);
 
         return $this->render('client/index.html.twig', [
@@ -43,16 +43,16 @@ class ClientController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Récupérer le compte utilisateur depuis le formulaire
+
             $user = $client->getCompte();
 
-            // Vérifier que l'utilisateur est correctement défini
+
             if ($user) {
-                // Persist the user entity
+
                 $entityManager->persist($user);
             }
 
-            // Persist the client entity
+
             $entityManager->persist($client);
             $entityManager->flush();
 
@@ -61,7 +61,7 @@ class ClientController extends AbstractController
             return $this->redirectToRoute('client.index');
         }
 
-        // Si le formulaire n'est pas valide, afficher les erreurs
+
         if ($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash('error', 'Il y a des erreurs dans le formulaire. Veuillez vérifier les informations saisies.');
         }

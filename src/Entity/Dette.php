@@ -20,19 +20,19 @@ class Dette
     private $montantVerse;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $dateAt;  // Renommé pour suivre les conventions
+    private $dateAt;
 
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'dettes')]
     private $client;
 
-    #[ORM\Column(type: 'string', nullable: true)] // Ajoute cette ligne pour le statut
+    #[ORM\Column(type: 'string', nullable: true)]
     private $statut;
 
     public function __construct()
     {
-        // Initialise montantVerse à 0 et dateAt à la date actuelle
+
         $this->montantVerse = 0;
-        $this->dateAt = new \DateTimeImmutable(); 
+        $this->dateAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -66,10 +66,10 @@ class Dette
 
     public function getDateAt(): ?\DateTimeImmutable
     {
-        return $this->dateAt;  // Utilisez le nom mis à jour
+        return $this->dateAt;
     }
 
-    public function setDateAt(\DateTimeImmutable $dateAt): self  // Utilisez le nom mis à jour
+    public function setDateAt(\DateTimeImmutable $dateAt): self
     {
         $this->dateAt = $dateAt;
 
@@ -88,8 +88,8 @@ class Dette
         return $this;
     }
 
-    // Ajoute les méthodes pour le statut
-    public function getStatut(): ?string
+    public function getStatut(): ?
+    string
     {
         return $this->statut;
     }
